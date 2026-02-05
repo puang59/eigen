@@ -1,0 +1,149 @@
+{"location":"inbox/page.tsx:loadLocalEmails:entry","message":"Loading local emails","data":{},"timestamp":1770315252613,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315252613,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315252622,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:success","message":"Loaded local emails","data":{"count":0},"timestamp":1770315252622,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315252630,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315252631,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315252632,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315252632,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315252644,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315252644,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315252644,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315252644,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:entry","message":"Loading local emails","data":{},"timestamp":1770315253053,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315253057,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":1},"timestamp":1770315253084,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:success","message":"Loaded local emails","data":{"count":1},"timestamp":1770315253085,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315253119,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315253119,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315253121,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315253121,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":1},"timestamp":1770315253135,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":1},"timestamp":1770315253136,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":1},"timestamp":1770315253136,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":1},"timestamp":1770315253136,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"LoginForm.tsx:handleSubmit:entry","message":"Login attempt started","data":{"username":"karankumar","hasPassword":true},"timestamp":1770315265509,"sessionId":"debug-session","hypothesisId":"H1"}
+{"location":"LoginForm.tsx:handleSubmit:before-login","message":"About to call login function","data":{"loginFnType":"function","args":["karankumar","123456"]},"timestamp":1770315265509,"sessionId":"debug-session","hypothesisId":"H1"}
+{"location":"auth.ts:login:entry","message":"Store login called","data":{"username":"karankumar","hasPassword":true},"timestamp":1770315265509,"sessionId":"debug-session","hypothesisId":"H3"}
+{"location":"auth.ts:login:api-response","message":"API login response","data":{"status":"Positive","hasUser":true},"timestamp":1770315265528,"sessionId":"debug-session","hypothesisId":"H3"}
+{"location":"auth.ts:login:before-saveUser","message":"About to save user to DB","data":{"userKeys":["username","name","publicKey","privateKey","serverHost"],"username":"karankumar"},"timestamp":1770315265528,"sessionId":"debug-session","hypothesisId":"H4"}
+{"location":"db.ts:saveUser:entry","message":"saveUser called","data":{"userType":"object","userKeys":["username","name","publicKey","privateKey","serverHost"],"hasUsername":true,"username":"karankumar"},"timestamp":1770315265528,"sessionId":"debug-session","hypothesisId":"H4"}
+{"location":"db.ts:saveUser:success","message":"saveUser completed","data":{},"timestamp":1770315265529,"sessionId":"debug-session","hypothesisId":"H4"}
+{"location":"db.ts:setSetting:entry","message":"setSetting called","data":{"key":"currentUser","valueLength":10},"timestamp":1770315265529,"sessionId":"debug-session","hypothesisId":"H6"}
+{"location":"LoginForm.tsx:handleSubmit:after-login","message":"Login function returned successfully","data":{},"timestamp":1770315265536,"sessionId":"debug-session","hypothesisId":"H1"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315265613,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315265614,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:entry","message":"Loading local emails","data":{},"timestamp":1770315265614,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315265614,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315265614,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315265614,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:entry","message":"Loading local emails","data":{},"timestamp":1770315265615,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315265615,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315265617,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315265617,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315265617,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:success","message":"Loaded local emails","data":{"count":0},"timestamp":1770315265617,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315265618,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315265618,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315265618,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:success","message":"Loaded local emails","data":{"count":0},"timestamp":1770315265618,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315265623,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315265624,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315265624,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315265624,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315265628,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315265628,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315265629,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315265629,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315269325,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315269325,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315269326,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315269326,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315269328,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315269328,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315269329,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315269329,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315269332,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315269332,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315269333,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315269333,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315269337,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315269338,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315269338,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315269338,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315269737,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315269737,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:entry","message":"Loading local emails","data":{},"timestamp":1770315269737,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315269738,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315269739,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315269740,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:entry","message":"Loading local emails","data":{},"timestamp":1770315269740,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315269740,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315269743,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315269743,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315269743,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:success","message":"Loaded local emails","data":{"count":0},"timestamp":1770315269743,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315269744,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315269744,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315269744,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:success","message":"Loaded local emails","data":{"count":0},"timestamp":1770315269744,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315269750,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315269750,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315269750,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315269751,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315269757,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315269757,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315269758,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315269758,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315312236,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315312237,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315312237,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315312241,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315312241,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315312241,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315312241,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315312237,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315312330,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315312332,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315312334,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315312334,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":1},"timestamp":1770315312345,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":1},"timestamp":1770315312346,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":1},"timestamp":1770315312352,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":1},"timestamp":1770315312352,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315334538,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315334539,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315334539,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315334542,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315334540,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315334542,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":0},"timestamp":1770315334543,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315334543,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315334540,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315334542,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:entry","message":"getEmails called","data":{},"timestamp":1770315334541,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315334542,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":1},"timestamp":1770315334615,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":1},"timestamp":1770315334615,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"db.ts:getEmails:success","message":"getEmails completed","data":{"count":1},"timestamp":1770315334616,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":1},"timestamp":1770315334616,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315339349,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315339350,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315339350,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315339351,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315339370,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315339371,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":1},"timestamp":1770315339378,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":1},"timestamp":1770315339379,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315342816,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315342817,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315342821,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":0},"timestamp":1770315342821,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315342828,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:entry","message":"Sidebar loading email count","data":{},"timestamp":1770315342829,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":1},"timestamp":1770315342843,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"Sidebar.tsx:loadCount:success","message":"Got emails","data":{"count":1},"timestamp":1770315342845,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:entry","message":"Loading local emails","data":{},"timestamp":1770315348766,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:entry","message":"Loading local emails","data":{},"timestamp":1770315348767,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:success","message":"Loaded local emails","data":{"count":0},"timestamp":1770315348772,"sessionId":"debug-session","hypothesisId":"H5"}
+{"location":"inbox/page.tsx:loadLocalEmails:success","message":"Loaded local emails","data":{"count":0},"timestamp":1770315348773,"sessionId":"debug-session","hypothesisId":"H5"}

@@ -3,12 +3,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Shield, Play, RotateCcw, Key, Lock, Unlock } from "lucide-react";
-import Navbar from "@/components/ui/Navbar";
-import Card from "@/components/ui/Card";
-import Button from "@/components/ui/Button";
+import { Shield, Play, RotateCcw, Key, Lock, Unlock, ArrowLeft, Mail, Loader2, Check } from "lucide-react";
+import Sidebar from "@/components/ui/Sidebar";
 import Toast, { useToast } from "@/components/ui/Toast";
-import KyberVisualizer from "@/components/crypto/KyberVisualizer";
 import { useAuthStore } from "@/store/auth";
 import api from "@/lib/api";
 import { KyberParams } from "@/lib/types";
@@ -51,7 +48,7 @@ export default function VisualizerPage() {
     try {
       const params = await api.getKyberParams();
       setKyberParams(params);
-    } catch (error) {
+    } catch {
       showToast("Failed to load Kyber parameters", "error");
     }
   };
@@ -84,7 +81,7 @@ export default function VisualizerPage() {
       showToast("Performing Kyber encapsulation...", "info");
       await new Promise((r) => setTimeout(r, 1500));
 
-      const testMessage = "Hello, Quantum World! 🔐";
+      const testMessage = "Hello, Quantum World!";
       const encryptResult = await api.encrypt(testMessage, keygenResult.public_key);
 
       if (encryptResult.Status !== "Positive") {
@@ -141,207 +138,193 @@ export default function VisualizerPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center gradient-bg">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
         >
-          <Shield className="w-12 h-12 text-indigo-400" />
+          <Mail className="w-8 h-8 text-gray-400" />
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen gradient-bg grid-pattern">
+    <div className="h-screen flex bg-gray-50">
       <Toast
         message={toast.message}
         type={toast.type}
         isVisible={toast.isVisible}
         onClose={hideToast}
       />
-      <Navbar />
 
-      <main className="container mx-auto px-4 py-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
-        >
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Kyber512 Visualizer
-          </h1>
-          <p className="text-gray-400">
-            Explore how post-quantum encryption works step by step
-          </p>
-        </motion.div>
+      {/* Sidebar */}
+      <Sidebar />
 
-        {/* Demo controls */}
-        <Card className="mb-8">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div>
-              <h2 className="text-xl font-semibold text-white mb-2">
-                Interactive Demo
-              </h2>
-              <p className="text-gray-400 text-sm">
-                Watch a complete Kyber512 encryption/decryption cycle in action
-              </p>
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Header */}
+        <header className="h-16 bg-white border-b border-gray-200 flex items-center px-6">
+          <button
+            onClick={() => router.push("/inbox")}
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mr-4"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <div>
+            <h1 className="text-lg font-semibold text-gray-900">Kyber512 Visualizer</h1>
+            <p className="text-sm text-gray-500">Explore post-quantum encryption</p>
+          </div>
+        </header>
+
+        {/* Content */}
+        <main className="flex-1 overflow-y-auto p-6">
+          {/* Demo controls */}
+          <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900 mb-1">
+                  Interactive Demo
+                </h2>
+                <p className="text-sm text-gray-500">
+                  Watch a complete Kyber512 encryption/decryption cycle
+                </p>
+              </div>
+              <div className="flex gap-3">
+                <button
+                  onClick={runDemo}
+                  disabled={isRunning}
+                  className="btn-primary"
+                >
+                  {isRunning ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Running...
+                    </>
+                  ) : (
+                    <>
+                      <Play className="w-4 h-4" />
+                      Run Demo
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={resetDemo}
+                  disabled={isRunning}
+                  className="btn-outline"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                  Reset
+                </button>
+              </div>
             </div>
-            <div className="flex gap-3">
-              <Button
-                onClick={runDemo}
-                disabled={isRunning}
-                isLoading={isRunning}
+
+            {/* Demo progress */}
+            {demoStep !== "idle" && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                className="pt-6 border-t border-gray-200"
               >
-                <Play className="w-4 h-4 mr-2" />
-                {isRunning ? "Running..." : "Run Demo"}
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={resetDemo}
-                disabled={isRunning}
-              >
-                <RotateCcw className="w-4 h-4 mr-2" />
-                Reset
-              </Button>
-            </div>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <DemoStepCard
+                    icon={<Key className="w-5 h-5" />}
+                    title="Key Generation"
+                    isActive={demoStep === "keygen"}
+                    isComplete={["encap", "decap", "complete"].includes(demoStep)}
+                    data={
+                      demoData.publicKey
+                        ? [
+                            { label: "Public Key", value: demoData.publicKey },
+                            { label: "Private Key", value: demoData.privateKey },
+                          ]
+                        : undefined
+                    }
+                  />
+                  <DemoStepCard
+                    icon={<Lock className="w-5 h-5" />}
+                    title="Encapsulation"
+                    isActive={demoStep === "encap"}
+                    isComplete={["decap", "complete"].includes(demoStep)}
+                    data={
+                      demoData.ciphertext
+                        ? [
+                            { label: "Message", value: demoData.message },
+                            { label: "Ciphertext", value: demoData.ciphertext },
+                            { label: "Shared Key", value: demoData.sharedKey },
+                          ]
+                        : undefined
+                    }
+                  />
+                  <DemoStepCard
+                    icon={<Unlock className="w-5 h-5" />}
+                    title="Decapsulation"
+                    isActive={demoStep === "decap"}
+                    isComplete={demoStep === "complete"}
+                    data={
+                      demoData.decryptedMessage
+                        ? [{ label: "Decrypted", value: demoData.decryptedMessage }]
+                        : undefined
+                    }
+                  />
+                  <DemoStepCard
+                    icon={<Shield className="w-5 h-5" />}
+                    title="Verification"
+                    isActive={false}
+                    isComplete={demoStep === "complete"}
+                    data={
+                      demoStep === "complete"
+                        ? [
+                            {
+                              label: "Status",
+                              value:
+                                demoData.message === demoData.decryptedMessage
+                                  ? "Messages match!"
+                                  : "Mismatch",
+                            },
+                          ]
+                        : undefined
+                    }
+                  />
+                </div>
+              </motion.div>
+            )}
           </div>
 
-          {/* Demo progress */}
-          {demoStep !== "idle" && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              className="mt-6 pt-6 border-t border-gray-700"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <DemoStepCard
-                  icon={<Key className="w-5 h-5" />}
-                  title="Key Generation"
-                  isActive={demoStep === "keygen"}
-                  isComplete={
-                    ["encap", "decap", "complete"].includes(demoStep)
-                  }
-                  data={
-                    demoData.publicKey
-                      ? [
-                          { label: "Public Key", value: demoData.publicKey },
-                          { label: "Private Key", value: demoData.privateKey },
-                        ]
-                      : undefined
-                  }
-                />
-                <DemoStepCard
-                  icon={<Lock className="w-5 h-5" />}
-                  title="Encapsulation"
-                  isActive={demoStep === "encap"}
-                  isComplete={["decap", "complete"].includes(demoStep)}
-                  data={
-                    demoData.ciphertext
-                      ? [
-                          { label: "Message", value: demoData.message },
-                          { label: "Ciphertext", value: demoData.ciphertext },
-                          { label: "Shared Key", value: demoData.sharedKey },
-                        ]
-                      : undefined
-                  }
-                />
-                <DemoStepCard
-                  icon={<Unlock className="w-5 h-5" />}
-                  title="Decapsulation"
-                  isActive={demoStep === "decap"}
-                  isComplete={demoStep === "complete"}
-                  data={
-                    demoData.decryptedMessage
-                      ? [
-                          {
-                            label: "Decrypted",
-                            value: demoData.decryptedMessage,
-                          },
-                        ]
-                      : undefined
-                  }
-                />
-                <DemoStepCard
-                  icon={<Shield className="w-5 h-5" />}
-                  title="Verification"
-                  isActive={false}
-                  isComplete={demoStep === "complete"}
-                  data={
-                    demoStep === "complete"
-                      ? [
-                          {
-                            label: "Status",
-                            value:
-                              demoData.message === demoData.decryptedMessage
-                                ? "✓ Messages match!"
-                                : "✗ Mismatch",
-                          },
-                        ]
-                      : undefined
-                  }
-                />
-              </div>
-            </motion.div>
-          )}
-        </Card>
-
-        {/* Kyber visualizer */}
-        <KyberVisualizer
-          params={kyberParams}
-          activeStep={
-            demoStep === "keygen"
-              ? "keygen"
-              : demoStep === "encap"
-              ? "encap"
-              : demoStep === "decap"
-              ? "decap"
-              : null
-          }
-        />
-
-        {/* Security info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mt-8"
-        >
-          <Card>
+          {/* Security info */}
+          <div className="bg-white rounded-xl border border-gray-200 p-6">
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-indigo-600/20 rounded-xl">
-                <Shield className="w-8 h-8 text-indigo-400" />
+              <div className="p-3 bg-blue-50 rounded-xl">
+                <Shield className="w-6 h-6 text-blue-600" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Why Kyber512?
                 </h3>
-                <p className="text-gray-400 text-sm mb-4">
-                  {kyberParams?.description}
+                <p className="text-gray-600 text-sm mb-4">
+                  {kyberParams?.description || "Kyber is a post-quantum key encapsulation mechanism based on the hardness of solving the learning-with-errors (LWE) problem over module lattices."}
                 </p>
                 <div className="flex flex-wrap gap-4 text-sm">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                    <span className="text-gray-300">
-                      {kyberParams?.security_level}
+                    <span className="text-gray-600">
+                      {kyberParams?.security_level || "128-bit security"}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                    <span className="text-gray-300">NIST Standardized</span>
+                    <span className="text-gray-600">NIST Standardized</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-                    <span className="text-gray-300">
-                      Quantum-Resistant
-                    </span>
+                    <span className="text-gray-600">Quantum-Resistant</span>
                   </div>
                 </div>
               </div>
             </div>
-          </Card>
-        </motion.div>
-      </main>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
@@ -366,10 +349,10 @@ function DemoStepCard({
         p-4 rounded-xl border transition-all
         ${
           isActive
-            ? "bg-indigo-900/30 border-indigo-500"
+            ? "bg-blue-50 border-blue-200"
             : isComplete
-            ? "bg-green-900/20 border-green-700/50"
-            : "bg-gray-800/30 border-gray-700/50"
+            ? "bg-green-50 border-green-200"
+            : "bg-gray-50 border-gray-200"
         }
       `}
     >
@@ -379,20 +362,17 @@ function DemoStepCard({
             p-2 rounded-lg
             ${
               isActive
-                ? "bg-indigo-600 text-white"
+                ? "bg-blue-500 text-white"
                 : isComplete
-                ? "bg-green-600 text-white"
-                : "bg-gray-700 text-gray-400"
+                ? "bg-green-500 text-white"
+                : "bg-gray-200 text-gray-500"
             }
           `}
         >
           {isActive ? (
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            >
-              {icon}
-            </motion.div>
+            <Loader2 className="w-5 h-5 animate-spin" />
+          ) : isComplete ? (
+            <Check className="w-5 h-5" />
           ) : (
             icon
           )}
@@ -400,9 +380,9 @@ function DemoStepCard({
         <span
           className={`font-medium ${
             isActive
-              ? "text-indigo-300"
+              ? "text-blue-700"
               : isComplete
-              ? "text-green-300"
+              ? "text-green-700"
               : "text-gray-500"
           }`}
         >
@@ -415,7 +395,7 @@ function DemoStepCard({
           {data.map((item, i) => (
             <div key={i}>
               <p className="text-xs text-gray-500">{item.label}</p>
-              <p className="text-xs text-gray-300 font-mono truncate">
+              <p className="text-xs text-gray-700 font-mono truncate">
                 {item.value}
               </p>
             </div>
@@ -435,7 +415,7 @@ function DemoStepCard({
                   repeat: Infinity,
                   delay: i * 0.15,
                 }}
-                className="w-2 h-2 rounded-full bg-indigo-400"
+                className="w-2 h-2 rounded-full bg-blue-400"
               />
             ))}
           </div>

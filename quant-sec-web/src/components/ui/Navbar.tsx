@@ -41,7 +41,7 @@ export default function Navbar() {
               <Shield className="w-6 h-6 text-indigo-400" />
             </div>
             <span className="font-bold text-white hidden sm:block">
-              QuantumMail
+              Eigen
             </span>
           </Link>
 

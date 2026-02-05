@@ -18,12 +18,15 @@ interface AuthState {
   password: string; // Stored temporarily for API calls
   
   // Actions
-  login: (user: User, password: string) => Promise<void>;
+  login: (username: string, password: string) => Promise<void>;
+  register: (name: string, username: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   initialize: () => Promise<void>;
   setServerHost: (host: string) => void;
   setPassword: (password: string) => void;
 }
+
+import api from "@/lib/api";
 
 export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
@@ -32,14 +35,62 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   serverHost: "http://localhost:8000",
   password: "",
 
-  login: async (user: User, password: string) => {
+  login: async (username: string, password: string) => {
+    api.setBaseURL(get().serverHost);
+    const response = await api.login(username, password);
+    
+    if (response.Status !== "Positive") {
+      throw new Error(response.Message || "Login failed");
+    }
+    
+    const user: User = {
+      username: response.user.username,
+      name: response.user.name,
+      publicKey: response.user.public_key,
+      privateKey: response.user.private_key,
+      serverHost: get().serverHost,
+    };
+    
     await saveUser(user);
     await setCurrentUser(user.username);
+    // Save password to sessionStorage for persistence during session
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("auth_password", password);
+    }
+    set({ user, isAuthenticated: true, password });
+  },
+
+  register: async (name: string, username: string, password: string) => {
+    api.setBaseURL(get().serverHost);
+    const response = await api.register(name, username, password);
+    
+    if (response.Status !== "Positive") {
+      throw new Error(response.Message || "Registration failed");
+    }
+    
+    const user: User = {
+      username: response.user.username,
+      name: response.user.name,
+      publicKey: response.user.public_key,
+      privateKey: response.user.private_key,
+      serverHost: get().serverHost,
+    };
+    
+    await saveUser(user);
+    await setCurrentUser(user.username);
+    // Save password to sessionStorage for persistence during session
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("auth_password", password);
+    }
     set({ user, isAuthenticated: true, password });
   },
 
   logout: async () => {
     await clearCurrentUser();
+    // Clear password from sessionStorage
+    if (typeof window !== "undefined") {
+      sessionStorage.removeItem("auth_password");
+    }
     set({ user: null, isAuthenticated: false, password: "" });
   },
 
@@ -48,7 +99,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     try {
       const user = await getCurrentUser();
       if (user) {
-        set({ user, isAuthenticated: true });
+        // Try to restore password from sessionStorage
+        const savedPassword = typeof window !== "undefined" 
+          ? sessionStorage.getItem("auth_password") 
+          : null;
+        set({ user, isAuthenticated: true, password: savedPassword || "" });
       }
     } catch (error) {
       console.error("Failed to initialize auth:", error);

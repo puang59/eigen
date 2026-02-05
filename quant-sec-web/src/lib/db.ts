@@ -115,6 +115,18 @@ export async function getEmails(limit?: number): Promise<Email[]> {
   return limit ? emails.slice(0, limit) : emails;
 }
 
+export async function getEmailsByFolder(folder: "inbox" | "sent", limit?: number): Promise<Email[]> {
+  const db = await getDB();
+  const emails = await db.getAllFromIndex("emails", "by-timestamp");
+  // Filter by folder (default to inbox if no folder specified)
+  const filtered = emails.filter((email) => (email.folder || "inbox") === folder);
+  // Sort by timestamp descending (newest first)
+  filtered.sort(
+    (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+  );
+  return limit ? filtered.slice(0, limit) : filtered;
+}
+
 export async function getEmail(id: number): Promise<Email | undefined> {
   const db = await getDB();
   return db.get("emails", id);

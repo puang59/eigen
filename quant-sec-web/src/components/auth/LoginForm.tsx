@@ -3,11 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { LogIn, Server } from "lucide-react";
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
+import { Loader2 } from "lucide-react";
 import { useAuthStore } from "@/store/auth";
-import api from "@/lib/api";
 
 interface LoginFormProps {
   onSwitchToRegister: () => void;
@@ -16,13 +13,11 @@ interface LoginFormProps {
 
 export default function LoginForm({ onSwitchToRegister, showToast }: LoginFormProps) {
   const router = useRouter();
-  const { login, serverHost, setServerHost } = useAuthStore();
+  const { login } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
-  const [showServerInput, setShowServerInput] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    serverHost: serverHost,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,31 +25,12 @@ export default function LoginForm({ onSwitchToRegister, showToast }: LoginFormPr
     setIsLoading(true);
 
     try {
-      // Set server host
-      api.setBaseURL(formData.serverHost);
-      setServerHost(formData.serverHost);
-
-      const response = await api.login(formData.username, formData.password);
-
-      if (response.Status === "Positive") {
-        await login(
-          {
-            username: response.user.username,
-            name: response.user.name,
-            publicKey: response.user.public_key,
-            privateKey: response.user.private_key,
-            serverHost: formData.serverHost,
-          },
-          formData.password
-        );
-        showToast("Login successful!", "success");
-        router.push("/dashboard");
-      } else {
-        showToast(response.Message, "error");
-      }
+      await login(formData.username, formData.password);
+      showToast("Welcome back!", "success");
+      router.push("/inbox");
     } catch (error) {
       showToast(
-        error instanceof Error ? error.message : "Failed to login",
+        error instanceof Error ? error.message : "Login failed",
         "error"
       );
     } finally {
@@ -63,78 +39,71 @@ export default function LoginForm({ onSwitchToRegister, showToast }: LoginFormPr
   };
 
   return (
-    <motion.form
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 20 }}
-      onSubmit={handleSubmit}
-      className="space-y-6"
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
     >
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-white mb-2">Welcome Back</h2>
-        <p className="text-gray-400">Sign in to your quantum-secure account</p>
+      <div className="text-center mb-6">
+        <h2 className="text-xl font-semibold text-gray-900">Sign in</h2>
       </div>
 
-      <Input
-        label="Username"
-        type="text"
-        placeholder="Enter your username"
-        value={formData.username}
-        onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-        required
-      />
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            Username
+          </label>
+          <input
+            type="text"
+            placeholder="Enter your username"
+            value={formData.username}
+            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+            className="input-light"
+            required
+            autoComplete="username"
+          />
+        </div>
 
-      <Input
-        label="Password"
-        type="password"
-        placeholder="Enter your password"
-        value={formData.password}
-        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-        required
-      />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            Password
+          </label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={formData.password}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            className="input-light"
+            required
+            autoComplete="current-password"
+          />
+        </div>
 
-      <div>
         <button
-          type="button"
-          onClick={() => setShowServerInput(!showServerInput)}
-          className="text-sm text-indigo-400 hover:text-indigo-300 flex items-center gap-1"
+          type="submit"
+          disabled={isLoading}
+          className="w-full btn-primary justify-center py-2.5"
         >
-          <Server className="w-4 h-4" />
-          {showServerInput ? "Hide" : "Change"} server
+          {isLoading ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              Signing in...
+            </>
+          ) : (
+            "Sign In"
+          )}
         </button>
-        
-        {showServerInput && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            className="mt-2"
-          >
-            <Input
-              placeholder="http://localhost:8000"
-              value={formData.serverHost}
-              onChange={(e) =>
-                setFormData({ ...formData, serverHost: e.target.value })
-              }
-            />
-          </motion.div>
-        )}
-      </div>
+      </form>
 
-      <Button type="submit" className="w-full" isLoading={isLoading}>
-        <LogIn className="w-4 h-4 mr-2" />
-        Sign In
-      </Button>
-
-      <p className="text-center text-gray-400">
-        Don&apos;t have an account?{" "}
+      <p className="mt-5 text-center text-sm text-gray-500">
+        Don't have an account?{" "}
         <button
-          type="button"
           onClick={onSwitchToRegister}
-          className="text-indigo-400 hover:text-indigo-300 font-medium"
+          className="text-gray-900 hover:underline font-medium"
         >
-          Create one
+          Create account
         </button>
       </p>
-    </motion.form>
+    </motion.div>
   );
 }

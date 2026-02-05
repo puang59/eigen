@@ -18,6 +18,7 @@ export interface Email {
   encrypted: boolean;
   tag?: string;
   encryptedData?: string;
+  folder?: "inbox" | "sent";
 }
 
 // API Response types
