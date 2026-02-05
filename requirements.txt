@@ -3,3 +3,5 @@ pycryptodome
 requests
 mysql-connector-python
 Django
+djangorestframework
+django-cors-headers

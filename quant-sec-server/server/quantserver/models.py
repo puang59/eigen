@@ -17,6 +17,7 @@ class Emails(models.Model):
 class Users(models.Model):
     name = models.CharField(max_length=100)
     username = models.CharField(max_length=100, primary_key=True, unique=True)
-    public_key = models.CharField(max_length=100)
+    public_key = models.TextField()
+    private_key = models.TextField(blank=True, null=True)  # Stored encrypted for web users
     salt = models.CharField(max_length=100)
     hashed_password = models.CharField(max_length=100)

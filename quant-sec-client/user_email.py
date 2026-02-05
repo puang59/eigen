@@ -50,7 +50,7 @@ def create_and_send_email(username, serverHost):
         user_password = data["Password"]
 
     response = requests.post(
-        "http://" + serverHost + "/quantserver/post-email",
+        "http://" + serverHost + "/quantserver/post-email/",
         data={
             "reciever_username": reciever,
             "sender_username": username,
@@ -76,7 +76,7 @@ def create_table(username):
     mycursor = mydb.cursor()
     mycursor.execute(
         f"""
-        CREATE TABLE {username}
+        CREATE TABLE IF NOT EXISTS {username}
         (sender_username VARCHAR(200), subject TEXT, body TEXT, date_time_of_arrival DATETIME)
         """
     )
@@ -136,7 +136,7 @@ def sync_emails(username, serverHost):
 
     # Import all the emails
     response = requests.get(
-        "http://" + serverHost + "/quantserver/get-inbox",
+        "http://" + serverHost + "/quantserver/get-inbox/",
         params={"username": username, "password": user_password},
     ).json()
 
@@ -193,7 +193,7 @@ def clearInbox(username, serverHost):
         user_password = data["Password"]
 
     response = requests.post(
-        "http://" + serverHost + "/quantserver/clear-inbox",
+        "http://" + serverHost + "/quantserver/clear-inbox/",
         data={"username": username, "password": user_password},
     ).json()
 

@@ -68,7 +68,7 @@ def create_account(serverHost):
     user_email.create_table(unique_username)
 
     response = requests.post(
-        "http://" + serverHost + "/quantserver/register-user",
+        "http://" + serverHost + "/quantserver/register-user/",
         data={
             "name": name,
             "username": unique_username,
