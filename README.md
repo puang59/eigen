@@ -1,5 +1,8 @@
 # Eigen
 
+
+<a href="http://localhost:3000/dashboard/1150785926/document?name=eigen&tab=document"><img src="https://app.devdoq.com/shields/read_docs.png" alt="Read Docs" width="120" height="45"></a>
+
 A quantum-secure email client that uses **CRYSTALS-Kyber** (post-quantum key encapsulation) and **AES-256** encryption to protect emails against future quantum computer attacks.
 
 ---
