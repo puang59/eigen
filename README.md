@@ -1,94 +1,148 @@
-# Eigen
+## About
 
-A quantum-secure email client that uses **CRYSTALS-Kyber** (post-quantum key encapsulation) and **AES-256** encryption to protect emails against future quantum computer attacks.
+Eigen is a quantum-secure email client designed to protect your communications from future threats. It leverages CRYSTALS-Kyber for post-quantum cryptography and AES-256 for symmetric encryption, ensuring your emails remain confidential even against advanced adversaries.
 
----
+## Built With
 
-## Tech Stack
+*   **Python:** Powers the command-line interface (CLI) for email management.
+*   **Django:** Serves as the backend API for user authentication and email storage.
+*   **Next.js:** Provides the modern, interactive web application interface.
+*   **CRYSTALS-Kyber:** Implements post-quantum cryptography for secure key encapsulation.
+*   **AES-256:** Ensures robust symmetric encryption for email content.
+*   **Docker:** Facilitates streamlined deployment and environment management.
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| Client | Python | CLI-based email client for composing/reading encrypted emails |
-| Server | Django + SQLite | REST API for user management and email storage |
-| Web App | Next.js + TypeScript | Web interface for the email client |
-| Encryption | CRYSTALS-Kyber | Quantum-resistant asymmetric key exchange |
-| Encryption | AES-256 | Symmetric encryption for message content |
-| Containerization | Docker | Server deployment |
+## Getting Started
 
----
-
-## Run Locally
+Follow these steps to get Eigen up and running locally.
 
 ### Prerequisites
 
-- Python 3.7+
-- Node.js 18+ (for web app)
-- Docker (optional, for containerized server)
+*   **Python 3.7+**: For the server and CLI client.
+*   **Node.js 18+**: Required for the optional web application.
+*   **Docker**: Recommended for containerizing the server.
 
-### 1. Clone & Install Dependencies
+### 1. Clone and Install Dependencies
+
+Clone the repository and navigate into the project directory.
 
 ```bash
 git clone https://github.com/your-repo/eigen.git
 cd eigen
 ```
 
-**Python dependencies:**
+Install Python dependencies:
 
 ```bash
-# Windows
-pip install -r requirements.txt
-
-# macOS / Linux
+# On macOS/Linux
 pip3 install -r requirements.txt
+
+# On Windows
+pip install -r requirements.txt
 ```
 
 ### 2. Run the Server
 
+Start the Django development server.
+
 ```bash
 cd quant-sec-server/server
 
-# Windows
-python manage.py migrate
-python manage.py runserver 0.0.0.0:8000
-
-# macOS / Linux
+# On macOS/Linux
 python3 manage.py migrate
 python3 manage.py runserver 0.0.0.0:8000
+
+# On Windows
+python manage.py migrate
+python manage.py runserver 0.0.0.0:8000
 ```
 
 ### 3. Run the CLI Client
 
+Interact with the email client from your terminal.
+
 ```bash
 cd quant-sec-client
 
-# Windows
-python main.py
+# On macOS/Linux
+python3 main.py --help
 
-# macOS / Linux
-python3 main.py
+# On Windows
+python main.py --help
 ```
 
 ### 4. Run the Web App (Optional)
 
+If you want to use the web interface, first ensure the Django server is running.
+
 ```bash
 cd quant-sec-web
-npm install
-npm run dev
+
+# Install Node.js dependencies using Bun
+bun install
+
+# Start the Next.js development server
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+## Usage
+
+Eigen provides both a CLI and a web interface for secure email communication.
+
+### CLI Client
+
+1.  **Connect & Authenticate:**
+    *   Connect to your email server: `connect <server_address>:<port>`
+    *   Create a new quantum-secure account: `create-account`
+    *   Log in to an existing account: `login <username>`
+
+2.  **Manage Emails:**
+    *   Compose and send an encrypted email: `compose <recipient_email>`
+    *   Fetch and decrypt new emails: `sync`
+    *   View your inbox: `list-emails`
+    *   Clear your inbox: `clear-inbox`
+    *   Exit the client: `exit`
+
+### Web Interface
+
+*   **User Authentication:** Register a new account or log in using your existing credentials. Your Kyber keypair will be generated and managed securely.
+*   **Send Encrypted Emails:** Compose messages, select recipients, and send them securely. The interface visualizes the encryption process in real-time.
+*   **Receive & Decrypt Emails:** Sync your inbox to fetch new messages. The web app will automatically decrypt incoming emails, with a step-by-step visualization of the decryption process.
+
+## Contributing
+
+We welcome contributions to improve Eigen! Here's how you can help:
+
+### Reporting Bugs
+
+*   **Use GitHub Issues:** Please report any bugs you find using the [Issues tab](https://github.com/yourusername/eigen/issues).
+*   **Be Specific:** Include clear steps to reproduce the bug, your environment (OS, versions), and any relevant error messages.
+
+### Feature Requests
+
+*   **Suggest Ideas:** If you have a feature idea, open a new issue to discuss it.
+*   **Explain the Value:** Describe how the feature would benefit users and the project.
+
+### Submitting Code
+
+*   **Fork and Branch:** Fork the repository and create a new branch for your changes.
+*   **Pull Requests:** Submit a pull request with your contributions. Please ensure your code follows project standards and includes relevant tests.
+
+## Prerequisites
+
+*   **Python 3.7+**: Required for the backend server.
+*   **Bun**: For installing and running the web application dependencies.
+*   **Docker (Optional)**: For running the backend server in a container.
+
+## Project Structure
+
+The repository is organized into distinct components for clarity and maintainability:
+
+*   **`src/`**: Contains the core application code.
+    *   **`app/`**: Houses the Next.js App Router pages, including the landing page, dashboard, email composition, inbox, and the Kyber algorithm visualizer.
+    *   **`components/`**: Holds reusable UI elements, such as authentication forms and cryptographic visualization components.
+*   **`public/`**: Static assets like images and fonts.
+*   **`tests/`**: Unit and integration tests for the application.
 
 ---
 
-## CLI Commands
-
-| Command | Description |
-|---------|-------------|
-| `connect` | Connect to an email server |
-| `create-account` | Create a new account with Kyber key pair |
-| `login` | Login to existing account |
-| `compose` | Send an encrypted email |
-| `sync` | Fetch and decrypt new emails |
-| `list-emails` | View inbox emails |
-| `clear-inbox` | Delete all inbox emails |
-| `exit` | Exit the application |
+*This README was generated by [DevDoq](https://devdoq.com)*
