@@ -28,7 +28,7 @@ import {
 import Sidebar from "@/components/ui/Sidebar";
 import Toast, { useToast } from "@/components/ui/Toast";
 import { useAuthStore } from "@/store/auth";
-import { saveEmails, getEmailsByFolder, clearEmails, saveEmail } from "@/lib/db";
+import { saveEmails, getEmailsByFolder, clearEmailsByFolder, saveEmail } from "@/lib/db";
 import api from "@/lib/api";
 import { Email } from "@/lib/types";
 
@@ -168,16 +168,19 @@ export default function InboxPage() {
 
   const handleClearInbox = async () => {
     if (!user || !password) return;
-    if (!confirm("Are you sure you want to clear your inbox?")) return;
+    const folderName = folder === "sent" ? "sent emails" : "inbox";
+    if (!confirm(`Are you sure you want to clear your ${folderName}?`)) return;
 
     try {
-      await api.clearInbox(user.username, password);
-      await clearEmails();
+      if (folder === "inbox") {
+        await api.clearInbox(user.username, password);
+      }
+      await clearEmailsByFolder(folder);
       setEmails([]);
       setSelectedEmail(null);
-      showToast("Inbox cleared", "success");
+      showToast(`${folder === "sent" ? "Sent emails" : "Inbox"} cleared`, "success");
     } catch {
-      showToast("Failed to clear inbox", "error");
+      showToast(`Failed to clear ${folderName}`, "error");
     }
   };
 
@@ -436,7 +439,7 @@ export default function InboxPage() {
               <div className="p-3 border-t border-gray-200">
                 <button onClick={handleClearInbox} className="btn-outline w-full justify-center text-sm text-red-600 border-red-200 hover:bg-red-50">
                   <Trash2 className="w-4 h-4" />
-                  Clear Inbox
+                  Clear {folder === "sent" ? "Sent" : "Inbox"}
                 </button>
               </div>
             )}

@@ -110,19 +110,24 @@ export async function getEmails(limit?: number): Promise<Email[]> {
   const emails = await db.getAllFromIndex("emails", "by-timestamp");
   // Sort by timestamp descending (newest first)
   emails.sort(
-    (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+    (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
   );
   return limit ? emails.slice(0, limit) : emails;
 }
 
-export async function getEmailsByFolder(folder: "inbox" | "sent", limit?: number): Promise<Email[]> {
+export async function getEmailsByFolder(
+  folder: "inbox" | "sent",
+  limit?: number,
+): Promise<Email[]> {
   const db = await getDB();
   const emails = await db.getAllFromIndex("emails", "by-timestamp");
   // Filter by folder (default to inbox if no folder specified)
-  const filtered = emails.filter((email) => (email.folder || "inbox") === folder);
+  const filtered = emails.filter(
+    (email) => (email.folder || "inbox") === folder,
+  );
   // Sort by timestamp descending (newest first)
   filtered.sort(
-    (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+    (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
   );
   return limit ? filtered.slice(0, limit) : filtered;
 }
@@ -145,6 +150,20 @@ export async function deleteEmail(id: number): Promise<void> {
 export async function clearEmails(): Promise<void> {
   const db = await getDB();
   await db.clear("emails");
+}
+
+export async function clearEmailsByFolder(
+  folder: "inbox" | "sent",
+): Promise<void> {
+  const db = await getDB();
+  const emails = await db.getAll("emails");
+  const tx = db.transaction("emails", "readwrite");
+  for (const email of emails) {
+    if ((email.folder || "inbox") === folder) {
+      await tx.store.delete(email.id!);
+    }
+  }
+  await tx.done;
 }
 
 // Settings operations
