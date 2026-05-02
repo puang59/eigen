@@ -1,94 +1,127 @@
-# Eigen
+## About
 
-A quantum-secure email client that uses **CRYSTALS-Kyber** (post-quantum key encapsulation) and **AES-256** encryption to protect emails against future quantum computer attacks.
+Eigen is a quantum-resistant email client designed to protect your communications from future threats. It leverages CRYSTALS-Kyber for post-quantum cryptography and AES-256 for symmetric encryption, ensuring your emails remain secure even against powerful quantum computers.
 
----
+## Built With
 
-## Tech Stack
+*   **Python (CLI):** For composing and reading encrypted emails via the command line.
+*   **Django:** Powers the REST API for user management and email storage.
+*   **Next.js:** Provides the interactive web application interface.
+*   **CRYSTALS-Kyber:** Implements post-quantum key encapsulation for future-proofing.
+*   **AES-256:** Ensures robust symmetric encryption for email content.
+*   **Docker:** Facilitates streamlined deployment and environment consistency.
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| Client | Python | CLI-based email client for composing/reading encrypted emails |
-| Server | Django + SQLite | REST API for user management and email storage |
-| Web App | Next.js + TypeScript | Web interface for the email client |
-| Encryption | CRYSTALS-Kyber | Quantum-resistant asymmetric key exchange |
-| Encryption | AES-256 | Symmetric encryption for message content |
-| Containerization | Docker | Server deployment |
+## Getting Started
 
----
-
-## Run Locally
+Follow these steps to set up Eigen locally.
 
 ### Prerequisites
 
-- Python 3.7+
-- Node.js 18+ (for web app)
-- Docker (optional, for containerized server)
+*   **Python 3.7+**: For the server and CLI client.
+*   **Node.js 18+**: Required for the optional web app.
+*   **Docker**: Optional, for running the server in a container.
 
 ### 1. Clone & Install Dependencies
+
+Clone the repository and navigate into the project directory.
 
 ```bash
 git clone https://github.com/your-repo/eigen.git
 cd eigen
 ```
 
-**Python dependencies:**
+Install Python dependencies:
 
 ```bash
-# Windows
+# On Windows
 pip install -r requirements.txt
 
-# macOS / Linux
+# On macOS/Linux
 pip3 install -r requirements.txt
 ```
 
 ### 2. Run the Server
 
+Navigate to the server directory and start the Django development server.
+
 ```bash
 cd quant-sec-server/server
 
-# Windows
+# Run migrations
 python manage.py migrate
-python manage.py runserver 0.0.0.0:8000
 
-# macOS / Linux
-python3 manage.py migrate
-python3 manage.py runserver 0.0.0.0:8000
+# Start the server
+python manage.py runserver 0.0.0.0:8000
 ```
 
 ### 3. Run the CLI Client
 
+Use the Python client to compose and read encrypted emails.
+
 ```bash
-cd quant-sec-client
+# Example: Compose a new email
+python -m client compose --recipient user@example.com --subject "Secure Message" --body "This is a quantum-secure message."
 
-# Windows
-python main.py
-
-# macOS / Linux
-python3 main.py
+# Example: Read your inbox
+python -m client read --inbox
 ```
 
 ### 4. Run the Web App (Optional)
 
+If you want to use the web interface, first install its dependencies and then start the Next.js development server.
+
 ```bash
 cd quant-sec-web
-npm install
-npm run dev
+bun install
+bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+The web app will be accessible at `http://localhost:3000`.
+
+## Usage
+
+Eigen provides both a CLI client and a web interface for secure email communication.
+
+### CLI Client
+
+1.  **Connect & Authenticate:**
+    *   Connect to your email server: `connect <server_address> <port>`
+    *   Create a new quantum-secure account: `create-account <username> <password>`
+    *   Log in to an existing account: `login <username> <password>`
+
+2.  **Send & Receive:**
+    *   Compose and send an encrypted email: `compose <recipient_email> <subject> <message_body>`
+    *   Fetch and decrypt new emails: `sync`
+    *   View your inbox: `list-emails`
+
+### Web Interface
+
+*   **User Authentication:** Register a new account or log in using your credentials. Your Kyber key pair will be generated automatically.
+*   **Email Composition:** Easily compose and send encrypted emails. The interface visualizes the encryption process in real-time.
+*   **Inbox Management:** Sync your inbox to receive new encrypted messages. Decrypt and read emails with a clear visualization of the decryption steps.
+
+## Contributing
+
+We welcome contributions to improve Eigen!
+
+*   **Reporting Bugs:** Please open an issue on GitHub with a clear description of the bug, steps to reproduce, and your environment details.
+*   **Feature Requests:** Suggest new features by opening an issue. Describe the desired functionality and its benefits.
+*   **Submitting Pull Requests:** Fork the repository, make your changes, and submit a pull request. Ensure your code follows project standards and includes relevant tests.
+
+## Prerequisites
+
+*   **Python 3.7+**: Required for the backend server.
+*   **Bun**: For installing and running the web application dependencies.
+*   **Docker (Optional)**: For running the backend server in a container.
+
+## Project Structure
+
+The repository is organized into distinct components for clarity and maintainability:
+
+*   **`src/`**: Contains the core application logic for the web frontend.
+    *   **`app/`**: Houses the Next.js App Router pages, including the landing page, dashboard, email composition, inbox, and the Kyber algorithm visualizer.
+    *   **`components/`**: Houses reusable UI components, such as authentication forms and cryptographic visualization elements.
 
 ---
 
-## CLI Commands
-
-| Command | Description |
-|---------|-------------|
-| `connect` | Connect to an email server |
-| `create-account` | Create a new account with Kyber key pair |
-| `login` | Login to existing account |
-| `compose` | Send an encrypted email |
-| `sync` | Fetch and decrypt new emails |
-| `list-emails` | View inbox emails |
-| `clear-inbox` | Delete all inbox emails |
-| `exit` | Exit the application |
+*This README was generated by [DevDoq](https://devdoq.com)*
