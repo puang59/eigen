@@ -1,5 +1,8 @@
 # Eigen
 
+
+<a href="http://localhost:3000/dashboard/1150785926/chat?name=eigen&tab=chat"><img src="https://app.devdoq.com/shields/talk_to_code.png" alt="Talk to Code" width="165" height="60"></a>
+
 A quantum-secure email client that uses **CRYSTALS-Kyber** (post-quantum key encapsulation) and **AES-256** encryption to protect emails against future quantum computer attacks.
 
 ---
